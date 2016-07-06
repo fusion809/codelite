@@ -21,11 +21,13 @@ depends=('wxgtk' 'curl' 'webkitgtk2' 'libssh' 'xterm' 'python2' 'libedit' 'ncurs
 makedepends=('pkgconfig' 'cmake')
 optdepends=('graphviz: callgraph visualization')
 
-source=(https://github.com/eranif/${pkgname}/archive/${pkgver//_/-}.tar.gz
-	http://repos.codelite.org/wxCrafterLibs/wxgui.zip)
+source=("https://github.com/eranif/${pkgname}/archive/${pkgver//_/-}.tar.gz"
+"http://repos.codelite.org/wxCrafterLibs/wxgui.zip"
+"codelite.desktop")
 
 md5sums=('e1ae35b6e6b63e774a75fe7d02892055'
-         '093485fcae62073ca8d0ba6ff3a5cb69')
+         '093485fcae62073ca8d0ba6ff3a5cb69'
+         '7d3e9e078e53baffff4e69569553b67b')
 
 #if [[ "$CARCH" == 'i686' ]]; then
 #  source+=(http://repos.codelite.org/wxCrafterLibs/ArchLinux/32/wxCrafter.so)
@@ -62,4 +64,6 @@ package() {
 #    install -m 755 -D "${srcdir}/wxCrafter.so" "${pkgdir}/usr/lib/codelite/wxCrafter.so"
     install -m 644 -D "${srcdir}/wxgui.zip" "${pkgdir}/usr/share/codelite/wxgui.zip"
     install -m 644 -D "${srcdir}/${pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    rm "${pkgdir}/usr/share/applications/codelite.desktop"
+    install -Dm755 "$srcdir/codelite.desktop" "${pkgdir}/usr/share/applications/codelite.desktop"
 }
