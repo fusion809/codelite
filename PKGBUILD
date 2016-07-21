@@ -11,7 +11,7 @@
 #
 
 pkgname=codelite
-pkgver=9.1
+pkgver=9.2
 pkgrel=1
 pkgdesc="Open-source, cross platform IDE for the C/C++ programming languages"
 arch=('i686' 'x86_64')
@@ -25,7 +25,7 @@ source=("https://github.com/eranif/${pkgname}/archive/${pkgver//_/-}.tar.gz"
 "http://repos.codelite.org/wxCrafterLibs/wxgui.zip"
 "codelite.desktop")
 
-md5sums=('e1ae35b6e6b63e774a75fe7d02892055'
+md5sums=('77f24e8c39160222ec23f7794a1fc64b'
          '093485fcae62073ca8d0ba6ff3a5cb69'
          '7d3e9e078e53baffff4e69569553b67b')
 
