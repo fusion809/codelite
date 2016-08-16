@@ -27,7 +27,7 @@ source=("https://github.com/eranif/${pkgname}/archive/${pkgver//_/-}.tar.gz"
 
 md5sums=('77f24e8c39160222ec23f7794a1fc64b'
          '093485fcae62073ca8d0ba6ff3a5cb69'
-         '7d3e9e078e53baffff4e69569553b67b')
+         'fcd52cfdddd2af795b5848bf4fd4f065')
 
 #if [[ "$CARCH" == 'i686' ]]; then
 #  source+=(http://repos.codelite.org/wxCrafterLibs/ArchLinux/32/wxCrafter.so)
@@ -55,16 +55,15 @@ build() {
     # ArchLinux: CL 9.1.0 still needs to be built without LLDB because of error: Option 'aarch64-reserve-x18' registered more than once
     #cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DENABLE_CLANG=1 -DENABLE_LLDB=1 -DWITH_MYSQL=1 -DCMAKE_INSTALL_LIBDIR=lib ..
     cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DENABLE_CLANG=1 -DENABLE_LLDB=0 -DWITH_MYSQL=1 -DCMAKE_INSTALL_LIBDIR=lib ..
-    make
+    make -j9
 }
 
 package() {
     cd "${srcdir}/${_pkg_name_ver}/build"
-    make -j1 DESTDIR="${pkgdir}" install
+    make -j9 DESTDIR="${pkgdir}" install
 #    install -m 755 -D "${srcdir}/wxCrafter.so" "${pkgdir}/usr/lib/codelite/wxCrafter.so"
     install -Dm644 "${srcdir}/wxgui.zip" "${pkgdir}/usr/share/codelite/wxgui.zip"
     install -Dm644 "${srcdir}/${_pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     rm "${pkgdir}/usr/share/applications/codelite.desktop"
-    install -Dm755 "$srcdir/${_pkg_name_ver}/bitmaps/512-codelite-logo.png" "${pkgdir}/usr/share/pixmaps/codelite.png"
     install -Dm755 "$srcdir/codelite.desktop" "${pkgdir}/usr/share/applications/codelite.desktop"
 }
