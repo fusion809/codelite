@@ -62,8 +62,8 @@ package() {
     cd "${srcdir}/${_pkg_name_ver}/build"
     make -j1 DESTDIR="${pkgdir}" install
 #    install -m 755 -D "${srcdir}/wxCrafter.so" "${pkgdir}/usr/lib/codelite/wxCrafter.so"
-    install -m 644 -D "${srcdir}/wxgui.zip" "${pkgdir}/usr/share/codelite/wxgui.zip"
-    install -m 644 -D "${srcdir}/${_pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    install -Dm644 "${srcdir}/wxgui.zip" "${pkgdir}/usr/share/codelite/wxgui.zip"
+    install -Dm644 "${srcdir}/${_pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     rm "${pkgdir}/usr/share/applications/codelite.desktop"
     install -Dm755 "$srcdir/${_pkg_name_ver}/bitmaps/512-codelite-logo.png" "${pkgdir}/usr/share/pixmaps/codelite.png"
     install -Dm755 "$srcdir/codelite.desktop" "${pkgdir}/usr/share/applications/codelite.desktop"
