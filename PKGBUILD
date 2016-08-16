@@ -39,14 +39,14 @@ md5sums=('77f24e8c39160222ec23f7794a1fc64b'
 
 noextract=('wxgui.zip')
 
-pkg_name_ver="${pkgname}-${pkgver//_/-}"
+_pkg_name_ver="${pkgname}-${pkgver//_/-}"
 
 # 20151027: ArchLinux clang/llvm-3.7: CommandLine Error: Option 'aarch64-reserve-x18' registered more than once
 # 20151027: -DENABLE_LLDB=0: ArchLinux clang/llvm-3.7: CommandLine Error: Option 'aarch64-reserve-x18' registered more than once
 # 20151027: sudo chmod 000 /usr/lib/codelite/LLDBDebugger.so
 
 build() {
-    cd "${srcdir}/${pkg_name_ver}"
+    cd "${srcdir}/${_pkg_name_ver}"
 
     CXXFLAGS="${CXXFLAGS} -fno-devirtualize"
 
@@ -59,11 +59,12 @@ build() {
 }
 
 package() {
-    cd "${srcdir}/${pkg_name_ver}/build"
+    cd "${srcdir}/${_pkg_name_ver}/build"
     make -j1 DESTDIR="${pkgdir}" install
 #    install -m 755 -D "${srcdir}/wxCrafter.so" "${pkgdir}/usr/lib/codelite/wxCrafter.so"
     install -m 644 -D "${srcdir}/wxgui.zip" "${pkgdir}/usr/share/codelite/wxgui.zip"
-    install -m 644 -D "${srcdir}/${pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    install -m 644 -D "${srcdir}/${_pkg_name_ver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     rm "${pkgdir}/usr/share/applications/codelite.desktop"
+    install -Dm755 "$srcdir/${_pkg_name_ver}/bitmaps/512-codelite-logo.png" "${pkgdir}/usr/share/pixmaps/codelite.png"
     install -Dm755 "$srcdir/codelite.desktop" "${pkgdir}/usr/share/applications/codelite.desktop"
 }
