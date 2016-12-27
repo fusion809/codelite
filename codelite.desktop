@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=CodeLite
-Exec=codelite %f
-Icon=/usr/share/icons/hicolor/256x256@2x/apps/codelite.png
-Terminal=false
-Type=Application
-Categories=Development;IDEs;C++;C;GTK;
-MimeType=text/x-c++;text/x-c++hdr;text/x-c++src;text/x-c;text/x-cpp;text/plain;application/x-cplusplus;inode/directory;text/x-makefile;application/json;application/javascript;
-StartupNotify=true
