@@ -11,7 +11,7 @@
 #
 
 pkgname=codelite
-pkgver=9.2
+pkgver=10.0
 pkgrel=1
 pkgdesc="Open-source, cross platform IDE for the C/C++ programming languages"
 arch=('i686' 'x86_64')
